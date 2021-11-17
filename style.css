@@ -1,0 +1,23 @@
+*{
+     margin: 0px;
+     padding: 0px;
+}
+
+#lake{
+     width: 1535px;
+     height: 710px;
+     position: relative;
+     z-index: 1;
+     background-image: url("img/lake-bg1.png");
+     /* background-repeat: no-repeat;
+     background-size: cover; */
+}
+
+#tadpole{
+     width: 100px;
+     height: 50px;
+     position: absolute;
+     z-index: 2;
+     top: 355px;
+     background-image: url("img/tadpole-left.png");
+}
