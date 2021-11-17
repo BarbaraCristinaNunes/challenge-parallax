@@ -4,6 +4,8 @@ let types = [];
 let x = 1400;
 let y = 0;
 let right = 0;
+let left = 0;
+
 // console.log(x);
 // console.log(y);
 
@@ -45,7 +47,7 @@ window.addEventListener('keyup', (e) => {
 function game(){
      // moveTadpole();
      moveSand();
-     setTimeout(game, 100);
+     setTimeout(game, 1);
 }
 game();
 
@@ -58,7 +60,20 @@ function moveSand(){
           right -= 1;
           document.getElementById('sand2').style.backgroundPositionX = right + "px";
      }
+     if(types.includes('ArrowLeft') && x <= 1400){
+          left -= 1;
+          document.getElementById('sand1').style.backgroundPositionX = left + "px";
+     }
+     if(types.includes('ArrowRight') && x > 0){
+          left += 1;
+          document.getElementById('sand1').style.backgroundPositionX = left + "px";
+     }
 }
+// function moveSand2(){
+     
+// }
+
+
 
 function moveTadpole(){
      if(types.includes('ArrowLeft') && x <= 1400){
