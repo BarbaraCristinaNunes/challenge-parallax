@@ -8,7 +8,27 @@
      height: 710px;
      position: relative;
      z-index: 1;
-     background-image: url("img/lake-bg1.png");
+     background-image: url("img/lake.png");
+     /* background-repeat: no-repeat;
+     background-size: cover; */
+}
+
+#sand1{
+     width: 1535px;
+     height: 710px;
+     position: absolute;
+     z-index: 3;
+     background-image: url("img/sand_1.png");
+     /* background-repeat: no-repeat;
+     background-size: cover; */
+}
+
+#sand2{
+     width: 1535px;
+     height: 710px;
+     position: absolute;
+     z-index: 2;
+     background-image: url("img/sand_2.png");
      /* background-repeat: no-repeat;
      background-size: cover; */
 }
@@ -18,6 +38,17 @@
      height: 50px;
      position: absolute;
      z-index: 2;
-     top: 355px;
+     top: 0px;
+     right: 1400px;
      background-image: url("img/tadpole-left.png");
 }
+
+/* #dragonfly{
+     width: 100px;
+     height: 45px;
+     position: absolute;
+     z-index: 2;
+     top: 650px;
+     right: 0px;
+     background-image: url("img/dragonfly-right.png");
+} */
