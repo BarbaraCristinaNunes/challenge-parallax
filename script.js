@@ -4,7 +4,12 @@ const sand1 = document.getElementById('sand1');
 const sand2 = document.getElementById('sand2');
 const fish1 = document.getElementById('fish1');
 const fish2 = document.getElementById('fish2');
-const dragonfly = document.getElementById('dragonfly');
+const dragonfly = document.getElementsByClassName('dragonfly');
+
+// parte sendo testada
+const main = document.getElementById('main');
+
+console.log(main);
 
 const positionSand1 = {
      x: 0,
@@ -14,21 +19,20 @@ const positionSand2 = {
      x: 0,
 };
 
+const positionFish1 = {
+     x: 0,
+}
+
+const positionFish2 = {
+     x: 0,
+}
+
 const tadpolePosition = {
      x: 1400,
      y: 0,
 };
 
 const dragonflyPosition = {
-     x: 0,
-     y: 650,
-}
-
-const positionFish1 = {
-     x: 0,
-}
-
-const positionFish2 = {
      x: 0,
 }
 
@@ -124,15 +128,48 @@ function moveTadpole(){
           tadpolePosition.y += 0.5;
           tadpole.style.top = tadpolePosition.y + "px";
      }
+}
 
+function createDrangofly() {
+
+     // let id = Math.floor(Math.random() * (650 - 0) + 1);
+     let dragonfly = document.createElement('div');
+     dragonfly.classList.add('dragonfly');
+     // dragonfly.id = id;
+     main.appendChild(dragonfly);     
+     // dragonfly.style.top = postion + "px";
+
+     createDragonflyStyle(dragonfly);
+}
+
+
+function createDragonflyStyle(div){
+
+
+    
+          let position = Math.floor(Math.random() * (650 - 0) + 1);
+          div.style.top = position + "px";
+          div.style.right = 0 + "px";
+      
 
 }
 
 
+function moveDragonfly() {
+
+     dragonflyPosition.x += 1;
+     for(i = 0; i < dragonfly.length; i++){
+          dragonfly.style.backgroundPositionX = dragonflyPosition + "px";
+     }  
+}
+
+
 function game(){
-     // moveTadpole();
-     // moveSand();
-     // MoveFishes();
+     moveTadpole();
+     // createDrangofly();
+     moveSand();
+     MoveFishes();
+     // moveDragonfly()
      setTimeout(game, 1);
 }
 game();
