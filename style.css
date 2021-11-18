@@ -56,12 +56,12 @@
      background-image: url("img/tadpole-left.png");
 }
 
-/* #dragonfly{
+.dragonfly{
      width: 100px;
      height: 45px;
      position: absolute;
      z-index: 6;
-     top: 650px;
-     right: 0px;
+     /* top: 650px;
+     right: 0px; */
      background-image: url("img/dragonfly-right.png");
-} */
+}
