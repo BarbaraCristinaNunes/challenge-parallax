@@ -5,42 +5,28 @@ const sand2 = document.getElementById('sand2');
 const fish1 = document.getElementById('fish1');
 const fish2 = document.getElementById('fish2');
 const dragonfly = document.getElementsByClassName('dragonfly');
-
-// parte sendo testada
 const main = document.getElementById('main');
-
-console.log(main);
-
 const positionSand1 = {
      x: 0,
 };
-
 const positionSand2 = {
      x: 0,
 };
-
 const positionFish1 = {
      x: 0,
-}
-
+};
 const positionFish2 = {
      x: 0,
-}
-
+};
 const tadpolePosition = {
      x: 1400,
      y: 0,
 };
-
 const dragonflyPosition = {
      x: 0,
-}
-
+};
 let types = [];
 
-
-console.log(tadpolePosition.x);
-// console.log(y);
 
 window.addEventListener('keydown', (e) => {
      
@@ -79,6 +65,7 @@ window.addEventListener('keyup', (e) => {
 
 
 function moveSand(){
+
      if(types.includes('ArrowLeft')){
           positionSand1.x += 1;
           document.getElementById('sand1').style.backgroundPositionX = positionSand1.x + "px";
@@ -95,8 +82,7 @@ function moveSand(){
           positionSand2.x -= 0.5;
           document.getElementById('sand2').style.backgroundPositionX = positionSand2.x + "px";
      }
-     // console.log(positionSand2.x + " sand2");
-     // console.log(positionSand1.x + " sand1");
+
 }
 
 function MoveFishes(){
@@ -132,36 +118,37 @@ function moveTadpole(){
 
 function createDrangofly() {
 
-     // let id = Math.floor(Math.random() * (650 - 0) + 1);
      let dragonfly = document.createElement('div');
      dragonfly.classList.add('dragonfly');
-     // dragonfly.id = id;
-     main.appendChild(dragonfly);     
-     // dragonfly.style.top = postion + "px";
-
+     main.appendChild(dragonfly);
      createDragonflyStyle(dragonfly);
 }
 
 
 function createDragonflyStyle(div){
 
-
-    
-          let position = Math.floor(Math.random() * (650 - 0) + 1);
-          div.style.top = position + "px";
-          div.style.right = 0 + "px";
-      
+     let position = Math.floor(Math.random() * (650 - 0) + 1);
+     div.style.top = position + "px";
+     div.style.right = 0 + "px";     
 
 }
 
 
 function moveDragonfly() {
-
-     dragonflyPosition.x += 1;
+     console.log(dragonflyPosition);
      for(i = 0; i < dragonfly.length; i++){
-          dragonfly.style.backgroundPositionX = dragonflyPosition + "px";
-     }  
+          dragonflyPosition.x += 1;
+          dragonfly[i].style.right = dragonflyPosition.x + "px";
+     }
+     
+ 
 }
+
+function call(){
+     createDrangofly();
+     setTimeout(call, 5000);
+}
+// call()
 
 
 function game(){
@@ -169,7 +156,7 @@ function game(){
      // createDrangofly();
      moveSand();
      MoveFishes();
-     // moveDragonfly()
+     moveDragonfly()
      setTimeout(game, 1);
 }
 game();
