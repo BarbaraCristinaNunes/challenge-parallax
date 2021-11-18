@@ -137,8 +137,9 @@ function createDragonflyStyle(div){
 function moveDragonfly() {
      console.log(dragonflyPosition);
      for(i = 0; i < dragonfly.length; i++){
-          dragonflyPosition.x += 1;
-          dragonfly[i].style.right = dragonflyPosition.x + "px";
+          dragonflyPosition.x = dragonfly[i].offsetLeft;
+          dragonflyPosition.x -= 1;
+          dragonfly[i].style.left = dragonflyPosition.x + "px";
      }
      
  
@@ -146,9 +147,9 @@ function moveDragonfly() {
 
 function call(){
      createDrangofly();
-     setTimeout(call, 5000);
+     setTimeout(call, 1000);
 }
-// call()
+call()
 
 
 function game(){
