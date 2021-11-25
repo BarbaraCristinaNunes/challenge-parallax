@@ -13,34 +13,36 @@ const fish2 = document.getElementById('fish2');
 
 const main = document.getElementById('main');
 
+const progressBar = document.getElementById('progress');
+
+const message = document.getElementById('message');
+
 let dragonfly = document.getElementsByClassName('dragonfly');
 
 //  I have an object for each layer to work with the positions of them
-const positionSand1 = {
+let positionSand1 = {
      x: 0,
 };
-const positionSand2 = {
+let positionSand2 = {
      x: 0,
 };
-const positionFish1 = {
+let positionFish1 = {
      x: 0,
 };
-const positionFish2 = {
+let positionFish2 = {
      x: 0,
 };
-const tadpolePosition = {
+let tadpolePosition = {
      x: 0,
      y: 0,
 };
-const dragonflyPosition = {
+let dragonflyPosition = {
      x: 0,
 };
 let types = [];
+// let seconds = 0;
 
-const d = new Date();
-let seconds = d.getSeconds();
-
-console.log(seconds);
+// console.log(seconds);
 
 /* With this event I know what the user is typing and setting this information in the array called types
 I use this information to make the tadpole moving 
@@ -155,7 +157,7 @@ function createDrangofly() {
 
 function removeDragonfly() {
 
-     for(i = 0; i < dragonfly.length; i++){
+     for(let i = 0; i < dragonfly.length; i++){
           if(dragonfly[i].offsetLeft < 0){
                dragonfly[i].remove();
           }
@@ -169,64 +171,81 @@ function createDragonflyStyle(div){
      let position = Math.floor(Math.random() * (650 - 0) + 1);
      div.style.top = position + "px";
      div.style.right = 0 + "px";     
-
 }
 
 // This function is responsible for the movement of the layers that have the dragonfly
 
 function moveDragonfly() {
 
-     for(i = 0; i < dragonfly.length; i++){
+     for(let i = 0; i < dragonfly.length; i++){
           dragonflyPosition.x = dragonfly[i].offsetLeft;
-          dragonflyPosition.x -= 2;
-          dragonfly[i].style.left = dragonflyPosition.x + "px";
+
+          if(types.includes('ArrowRight')){
+               dragonflyPosition.x -= 2.5;
+               dragonfly[i].style.left = dragonflyPosition.x + "px";
+          }else{
+               dragonflyPosition.x -= 2;
+               dragonfly[i].style.left = dragonflyPosition.x + "px";     
+          }
      }     
 }
 
 
-// function collision() {
-     
-//      for(i = 0; i < dragonfly.length; i++){
-//           console.log(dragonfly[i].offsetLeft);
-//      }
-// }
+function collision() {
+     for(let i = 0; i < dragonfly.length; i++){
+
+          if(
+               !(tadpole.offsetLeft + 100 < dragonfly[i].offsetLeft || 
+               tadpole.offsetTop + 50 < dragonfly[i].offsetTop ||
+               tadpole.offsetLeft > dragonfly[i].offsetLeft + 100 ||
+               tadpole.offsetTop > dragonfly[i].offsetTop + 45)
+          ){
+               message.innerHTML = "<h1> You died! </h1> <p>You survived for "+ progressBar.value +" seconds"
+          }               
+     }
+}
 
 function evolution() {
-     console.log(seconds);
-     if(seconds == 1){
+     // console.log(seconds);
+     if(progressBar.value == 30){
           tadpole.style.backgroundImage = "url('img/tadpole-evolution-1.png')";
      }
-     if(seconds == 15){
+     if(progressBar.value == 60){
           tadpole.style.backgroundImage = "url('img/tadpole-evolution-2.png')";
      }
-     if(seconds == 20){
+     if(progressBar.value == 90){
           tadpole.style.backgroundImage = "url('img/tadpole-evolution-3.png')";
           tadpole.style.width = 200 + "px";
           tadpole.style.height = 100 + "px";
      }
+}
 
+function countSurvivalTime(){
+
+     if(progressBar.value == 100){
+          progressBar.value = 0;
+     }else{
+          progressBar.value += 1 ;
+     }
+     console.log(progressBar.value);
 }
 
 
 function call(){
      createDrangofly();
-     setTimeout(call, 9000);
+     countSurvivalTime();
+     setTimeout(call, 1000);
 }
 call()
 
-function test(){
-     moveDragonfly()
-     setTimeout(test, 1)
-}
-test();
-
 function game(){
+     moveDragonfly();
      moveTadpole();
      removeDragonfly()
      moveSand();
      MoveFishes();
-     // collision() 
-     evolution()
+     collision();
+     evolution();
      setTimeout(game, 1);
 }
 game();
