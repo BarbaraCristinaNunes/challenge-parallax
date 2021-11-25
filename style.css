@@ -3,6 +3,15 @@
      padding: 0px;
 }
 
+#progress{
+     width: 200px;
+     height: 20px;
+     top: 690px;
+     left: 10px;
+     z-index: 9;
+     position: absolute;
+}
+
 #lake{
      width: 1535px;
      height: 710px;
@@ -52,6 +61,7 @@
      position: absolute;
      z-index: 6;
      background-image: url("img/tadpole-left.png");
+     border: 2px solid green;
 }
 
 .dragonfly{
@@ -62,4 +72,25 @@
      /* top: 650px;
      right: 0px; */
      background-image: url("img/dragonfly-right.png");
+     border: 2px solid red;
+}
+
+#btn{
+     position: absolute;
+     z-index: 9;
+     top: 650px;
+     left: 75px;
+}
+
+#message{
+     position: absolute;
+     z-index: 9;
+     width: 500px;
+     height: 150px;
+     left: 500px;
+     top: 300px;
+     text-align: center;
+     color: red;
+     font-size: xx-large;
+     background-color: seashell;
 }
