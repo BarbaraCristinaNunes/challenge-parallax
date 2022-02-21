@@ -19,6 +19,8 @@ const message = document.getElementById('message');
 
 let dragonfly = document.getElementsByClassName('dragonfly');
 
+let dead  = false;
+
 //  I have an object for each layer to work with the positions of them
 let positionSand1 = {
      x: 0,
@@ -200,7 +202,8 @@ function collision() {
                tadpole.offsetLeft > dragonfly[i].offsetLeft + 100 ||
                tadpole.offsetTop > dragonfly[i].offsetTop + 45)
           ){
-               message.innerHTML = "<h1> You died! </h1> <p>You survived for "+ progressBar.value +" seconds"
+               message.innerHTML = "<h1> You died! </h1> <p>You survived for "+ progressBar.value +" seconds";
+               dead = true;
           }               
      }
 }
@@ -238,14 +241,30 @@ function call(){
 }
 call()
 
-function game(){
-     moveDragonfly();
-     moveTadpole();
+function game(){     
      removeDragonfly()
      moveSand();
      MoveFishes();
      collision();
-     evolution();
      setTimeout(game, 1);
 }
 game();
+
+function moves(){
+     moveDragonfly();
+     moveTadpole();
+     evolution();
+     setTimeout(moves, 1);
+}
+moves();
+
+document.getElementById("restart").addEventListener("click", restartGame);
+
+function restartGame(){
+     // dragonfly.remove();
+     tadpolePosition.x = 0;
+     tadpolePosition.y = 0;
+     progressBar.value = 0;
+     message.innerHTML = "";
+     console.log("ola");
+}
