@@ -61,7 +61,7 @@
      position: absolute;
      z-index: 6;
      background-image: url("img/tadpole-left.png");
-     border: 2px solid green;
+     /* border: 2px solid green; */
 }
 
 .dragonfly{
@@ -72,7 +72,7 @@
      /* top: 650px;
      right: 0px; */
      background-image: url("img/dragonfly-right.png");
-     border: 2px solid red;
+     /* border: 2px solid red; */
 }
 
 #btn{
