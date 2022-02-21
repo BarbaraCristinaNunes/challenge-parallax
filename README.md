@@ -1,9 +1,9 @@
 # challenge-parallax
 
-referencias dos vetores
+vetors reference
 
-libelua == https://nl.vecteezy.com/vector-kunst/1879144-levenscyclus-van-drakenvlieg-op-witte-achtergrond
+dragonfly == https://nl.vecteezy.com/vector-kunst/1879144-levenscyclus-van-drakenvlieg-op-witte-achtergrond
 
-sapo == https://nl.vecteezy.com/vector-kunst/302644-kikker-levenscyclus-digram
+frog == https://nl.vecteezy.com/vector-kunst/302644-kikker-levenscyclus-digram
 
 https://barbaracristinanunes.github.io/challenge-parallax/
