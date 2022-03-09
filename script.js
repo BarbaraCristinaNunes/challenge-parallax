@@ -220,41 +220,42 @@ function countSurvivalTime(){
      }else{
           progressBar.value += 1 ;
      }
-     console.log(progressBar.value);
+     // console.log(progressBar.value);
 }
 
 
-function call(){
+function game(){
      createDrangofly();
      countSurvivalTime();
-     setTimeout(call, 1000);
+     if(dead !== true){
+          console.log(dead);
+          setTimeout(game, 1000);
+     }     
 }
-call()
+game();
 
-function game(){     
+function landscapeMoves(){     
      removeDragonfly()
      moveSand();
      MoveFishes();
      collision();
-     setTimeout(game, 1);
+     setTimeout(landscapeMoves, 1);  
 }
-game();
+landscapeMoves();
 
-function moves(){
+function animalsMoves(){
      moveDragonfly();
      moveTadpole();
      evolution();
-     setTimeout(moves, 1);
+     if(dead !== true){
+          console.log(dead);
+          setTimeout(animalsMoves, 1);
+     }     
 }
-moves();
+animalsMoves();
 
 document.getElementById("restart").addEventListener("click", restartGame);
 
 function restartGame(){
-     // dragonfly.remove();
-     tadpolePosition.x = 0;
-     tadpolePosition.y = 0;
-     progressBar.value = 0;
-     message.innerHTML = "";
-     console.log("ola");
+     location.reload();
 }
