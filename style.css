@@ -56,11 +56,11 @@
 
 
 #tadpole{
-     /* width: 100px;
-     height: 50px; */
+     width: 100px;
+     height: 50px;
      position: absolute;
      z-index: 6;
-     /* background-image: url("img/tadpole-left.png"); */
+     background-image: url("img/tadpole-left.png");
      /* border: 2px solid green; */
 }
 

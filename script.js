@@ -41,7 +41,7 @@ let tadpolePosition = {
 let dragonflyPosition = {
      x: 0,
 };
-let types = [];
+let types = "";
 // let seconds = 0;
 
 // console.log(seconds);
@@ -53,16 +53,16 @@ I use this information to make the tadpole moving
 window.addEventListener('keydown', (e) => {
      
      if(e.key == 'ArrowLeft'){
-          types.push(e.key);
+          types = 'ArrowLeft';
      }
      if(e.key == 'ArrowRight'){
-          types.push(e.key)
+          types = 'ArrowRight';
      }
      if(e.key == 'ArrowDown'){
-          types.push(e.key)
+          types = 'ArrowDown';
      }
      if(e.key == 'ArrowUp'){
-          types.push(e.key)
+          types = 'ArrowUp';
      }
 });
 
@@ -72,18 +72,8 @@ the key form the array called types. So the tadpole stops the move
 
 window.addEventListener('keyup', (e) => {
      
-     if(e.key == 'ArrowLeft'){
-          types.splice('ArrowLeft');
-     }
-     if(e.key == 'ArrowRight'){
-          types.splice('ArrowRight');
-     }
-     if(e.key == 'ArrowDown'){
-          types.splice('ArrowDown');
-
-     }
-     if(e.key == 'ArrowUp'){
-          types.splice('ArrowUp');
+     if(e.key == 'ArrowLeft' || e.key == 'ArrowRight' || e.key == 'ArrowDown' || e.key == 'ArrowUp'){
+          types = "";
      }
 })
 
@@ -91,19 +81,19 @@ window.addEventListener('keyup', (e) => {
 
 function moveSand(){
 
-     if(types.includes('ArrowLeft')){
+     if(types == 'ArrowLeft'){
           positionSand1.x += 1.5;
           document.getElementById('sand1').style.backgroundPositionX = positionSand1.x + "px";
      }
-     if(types.includes('ArrowRight')){
+     if(types == 'ArrowRight'){
           positionSand1.x -= 1.5;
           document.getElementById('sand1').style.backgroundPositionX = positionSand1.x + "px";
      }
-     if(types.includes('ArrowLeft')){
+     if(types == 'ArrowLeft'){
           positionSand2.x += 1;
           document.getElementById('sand2').style.backgroundPositionX = positionSand2.x + "px";
      }
-     if(types.includes('ArrowRight')){
+     if(types == 'ArrowRight'){
           positionSand2.x -= 1;
           document.getElementById('sand2').style.backgroundPositionX = positionSand2.x + "px";
      }
@@ -123,23 +113,23 @@ function MoveFishes(){
 // This function is responsible for the movement of the layer that has the tadpole
 
 function moveTadpole(){
-     if(types.includes('ArrowLeft') && tadpolePosition.x > 0){
+     if(types == 'ArrowLeft' && tadpolePosition.x > 0){
           tadpolePosition.x -= 0.5;
           tadpole.style.left = tadpolePosition.x + "px";
      }
-     if(types.includes('ArrowRight') && tadpolePosition.x < 1400){
+     if(types == 'ArrowRight' && tadpolePosition.x < 1400){
           tadpolePosition.x += 0.5;
           tadpole.style.left = tadpolePosition.x + "px";
      }
-     if(types.includes('ArrowDown') && tadpolePosition.y < 650){
+     if(types == 'ArrowDown' && tadpolePosition.y < 650){
           tadpolePosition.y += 0.5;
           tadpole.style.top = tadpolePosition.y + "px";
      }
-     if(types.includes('ArrowUp') && tadpolePosition.y > 0){
+     if(types == 'ArrowUp' && tadpolePosition.y > 0){
           tadpolePosition.y -= 0.5;
           tadpole.style.top = tadpolePosition.y + "px";
      }
-     if(types.length == 0 && tadpolePosition.y < 650){
+     if(types == "" && tadpolePosition.y < 650){
           tadpolePosition.y += 0.2;
           tadpole.style.top = tadpolePosition.y + "px";
      }
@@ -182,7 +172,7 @@ function moveDragonfly() {
      for(let i = 0; i < dragonfly.length; i++){
           dragonflyPosition.x = dragonfly[i].offsetLeft;
 
-          if(types.includes('ArrowRight')){
+          if(types == 'ArrowRight'){
                dragonflyPosition.x -= 2.5;
                dragonfly[i].style.left = dragonflyPosition.x + "px";
           }else{
