@@ -1,7 +1,65 @@
+class Tadpole 
+{
+    #positionX = 0;
+    #positionY = 0;
+    #evolution = ['img/tadpole-left.png', 'img/tadpole-evolution-1.png', 'img/tadpole-evolution-2.png', 'img/tadpole-evolution-3.png'];
+    #dead = false;
+
+    constructor(){
+
+    }
+
+    moveLeft(){
+
+        if(this.#positionX > 0){
+            this.#positionX -= 0.5;
+            return this.#positionX;
+        }
+    }
+
+    moveRight(){
+        if(this.#positionX < 1400){
+            this.#positionX += 0.5;
+            return this.#positionX;
+        }
+    }
+
+    moveDown(){
+        if(this.#positionY < 650){
+            this.#positionY += 0.5;
+            return this.#positionY;
+        }
+    }
+
+    moveUp(){
+        if(this.#positionY > 0){
+            this.#positionY -= 0.5;
+            return this.#positionY;
+        }
+    }
+
+    noMove(){
+        this.#positionY += 0.2;
+        return this.#positionY;
+    }
+
+    deadStatus(status){
+        this.#dead = status;
+        return this.#dead;
+    }
+
+    tadpolEvolution(index){
+        return this.#evolution[index];
+    }
+}
+
+let tadpoleObject = new Tadpole();
+
 // I have a variable to each div that I have in my html
 const lake = document.getElementById('lake');
 
 const tadpole = document.getElementById('tadpole');
+tadpole.style.backgroundImage = "url('" + tadpoleObject.tadpolEvolution(0) + "')";
 
 const sand1 = document.getElementById('sand1');
 
@@ -34,10 +92,7 @@ let positionFish1 = {
 let positionFish2 = {
      x: 0,
 };
-let tadpolePosition = {
-     x: 0,
-     y: 0,
-};
+
 let dragonflyPosition = {
      x: 0,
 };
@@ -113,25 +168,20 @@ function MoveFishes(){
 // This function is responsible for the movement of the layer that has the tadpole
 
 function moveTadpole(){
-     if(types == 'ArrowLeft' && tadpolePosition.x > 0){
-          tadpolePosition.x -= 0.5;
-          tadpole.style.left = tadpolePosition.x + "px";
+     if(types == 'ArrowLeft'){
+          tadpole.style.left = tadpoleObject.moveLeft() + "px";
      }
-     if(types == 'ArrowRight' && tadpolePosition.x < 1400){
-          tadpolePosition.x += 0.5;
-          tadpole.style.left = tadpolePosition.x + "px";
+     if(types == 'ArrowRight'){
+          tadpole.style.left = tadpoleObject.moveRight() + "px";
      }
-     if(types == 'ArrowDown' && tadpolePosition.y < 650){
-          tadpolePosition.y += 0.5;
-          tadpole.style.top = tadpolePosition.y + "px";
+     if(types == 'ArrowDown'){
+          tadpole.style.top = tadpoleObject.moveDown() + "px";
      }
-     if(types == 'ArrowUp' && tadpolePosition.y > 0){
-          tadpolePosition.y -= 0.5;
-          tadpole.style.top = tadpolePosition.y + "px";
+     if(types == 'ArrowUp'){
+          tadpole.style.top = tadpoleObject.moveUp() + "px";
      }
-     if(types == "" && tadpolePosition.y < 650){
-          tadpolePosition.y += 0.2;
-          tadpole.style.top = tadpolePosition.y + "px";
+     if(types == ""){
+          tadpole.style.top = tadpoleObject.noMove() + "px";
      }
 }
 
@@ -201,13 +251,13 @@ function collision() {
 function evolution() {
      // console.log(seconds);
      if(progressBar.value == 30){
-          tadpole.style.backgroundImage = "url('img/tadpole-evolution-1.png')";
+          tadpole.style.backgroundImage = "url('" + tadpoleObject.tadpolEvolution(1) + "')";
      }
      if(progressBar.value == 60){
-          tadpole.style.backgroundImage = "url('img/tadpole-evolution-2.png')";
+          tadpole.style.backgroundImage = "url('" + tadpoleObject.tadpolEvolution(2) + "')";
      }
      if(progressBar.value == 90){
-          tadpole.style.backgroundImage = "url('img/tadpole-evolution-3.png')";
+          tadpole.style.backgroundImage = "url('" + tadpoleObject.tadpolEvolution(3) + "')";
           tadpole.style.width = 200 + "px";
           tadpole.style.height = 100 + "px";
      }
